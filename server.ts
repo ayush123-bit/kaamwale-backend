@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import customerRoutes from './src/routes/customerRoutes';
-
+import ServiceProviderRegisterRoutes from './src/routes/RegisterServicer';
 dotenv.config();
 
 const app: Application = express();
@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/customer', customerRoutes);
-
+app.use('/api/provider', ServiceProviderRegisterRoutes);
 mongoose.connect(process.env.MONGO_URI as string)
   .then(() => {
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
